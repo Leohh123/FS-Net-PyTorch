@@ -32,7 +32,7 @@ def get_args():
                         help='loss balancing factor')
     parser.add_argument('--clip', type=float, default=5.0,
                         help='gradient clipping')
-    parser.add_argument('--data', type=str,
+    parser.add_argument('--data', type=str, default='./dataset/',
                         help='dataset directory')
     parser.add_argument('--save', type=str, default='./save/',
                         help='model save directory')
