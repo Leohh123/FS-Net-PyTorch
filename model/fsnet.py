@@ -17,10 +17,7 @@ from utils.common import elementwise_apply
 class FSNet(nn.Module):
     def __init__(self, n_app=19, max_value=5000, emb_dim=16, n_layer=2, hidden_size=128, dropout=0.2):
         super().__init__()
-        self.embedding = EmbeddingLayer(
-            emb_dim=emb_dim,
-            max_row=max_value
-        )
+        self.embedding = EmbeddingLayer(emb_dim=emb_dim)
         self.encoder = EncoderLayer(
             input_dim=emb_dim,
             n_layer=n_layer,

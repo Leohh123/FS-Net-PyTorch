@@ -5,12 +5,11 @@ import torch.nn.functional as F
 
 
 class EmbeddingLayer(nn.Module):
-    def __init__(self, emb_dim=16, max_row=5000):
+    def __init__(self, emb_dim=16):
         super().__init__()
-        self.embedding = nn.Embedding(
-            num_embeddings=max_row,
-            embedding_dim=emb_dim
-        )
+        self.emb_dim = emb_dim
 
-    def forward(self, x):
-        return self.embedding(x)
+    def forward(self, x: torch.LongTensor):
+        bit_features = [((x >> i) & 1).float() for i in range(self.emb_dim)]
+        embedded = torch.stack(bit_features, dim=1)
+        return embedded
